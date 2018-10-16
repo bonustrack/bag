@@ -43,6 +43,9 @@ const start = () => {
     } else if (address.slice(0, 3) === target.slice(0, 3)) {
       console.log('3', i, address, seed);
     }
+    if (i % 1000 === 0) {
+      console.log(i);
+    }
   } while (address.slice(0, target.length) !== target);
   console.log('Bingo!', i, address, seed);
 };
