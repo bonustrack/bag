@@ -1,0 +1,12 @@
+{
+  "name": "bag",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bitcore-mnemonic": "^1.5.0",
+    "byteballcore": "^0.2.93"
+  }
+}
