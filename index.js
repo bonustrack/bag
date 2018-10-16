@@ -27,21 +27,24 @@ const generateAddress = () => {
 
 let address;
 let seed;
+let i = 0;
 
-console.log('BAG starting');
-do {
-  const generated = generateAddress();
-  address = generated.address;
-  seed = generated.seed;
-  if (address.slice(0, 5) === target.slice(0, 5)) {
-    console.log('5', address, seed);
-  } else if (address.slice(0, 4) === target.slice(0, 4)) {
-    console.log('4', address, seed);
-  } else if (address.slice(0, 3) === target.slice(0, 3)) {
-    console.log('3', address, seed);
-  } else if (address.slice(0, 2) === target.slice(0, 2)) {
-    console.log('2', address, seed);
-  }
-} while (address.slice(0, target.length) !== target);
+const start = () => {
+  console.log('BAG starting');
+  do {
+    i++;
+    const generated = generateAddress();
+    address = generated.address;
+    seed = generated.seed;
+    if (address.slice(0, 5) === target.slice(0, 5)) {
+      console.log('5', i, address, seed);
+    } else if (address.slice(0, 4) === target.slice(0, 4)) {
+      console.log('4', i, address, seed);
+    } else if (address.slice(0, 3) === target.slice(0, 3)) {
+      console.log('3', i, address, seed);
+    }
+  } while (address.slice(0, target.length) !== target);
+  console.log('Bingo!', i, address, seed);
+};
 
-console.log('Bingo!', address, seed);
+start();
