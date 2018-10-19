@@ -10,12 +10,13 @@ const generateRandomSeed = () => {
 };
 
 const target = process.env.TARGET || 'FABIEN';
+const passphrase = process.env.PASSPHRASE || 'passphrase';
 const path = "m/44'/0'/0'/0/0";
 
 const generateAddress = () => {
   const randomSeed = generateRandomSeed();
   const mnemonic = new Mnemonic(randomSeed);
-  const xPrivKey = mnemonic.toHDPrivateKey();
+  const xPrivKey = mnemonic.toHDPrivateKey(passphrase);
   const { privateKey } = xPrivKey.derive(path);
   const pubkey = privateKey.publicKey.toBuffer().toString('base64');
   const definition = ['sig', { pubkey }];
@@ -43,9 +44,8 @@ const start = () => {
     } else if (address.slice(0, 3) === target.slice(0, 3)) {
       console.log('3', i, address, seed);
     }
-    if (i % 100000 === 0) {
-      console.log(i);
-    }
+    if (i === 1 || i === 100 || i === 1000 || i === 10000) console.log(i, address, seed);
+    if (i % 100000 === 0) console.log(i);
   } while (address.slice(0, target.length) !== target);
   console.log('Bingo!', i, address, seed);
 };
